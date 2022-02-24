@@ -24,7 +24,80 @@ namespace Unity.XR.PXR.Editor
 {
     public class PXR_BuildProcessor : XRBuildHelper<PXR_Settings>
     {
-        public override string BuildSettingsKey { get {return "Unity.XR.PXR.Settings";} }
+        public override string BuildSettingsKey { get { return "Unity.XR.PXR.Settings"; } }
+
+        private bool IsCurrentBuildTargetValid(BuildReport report)
+        {
+            return report.summary.platformGroup == BuildTargetGroup.Android;
+        }
+
+        private bool HasLoaderEnabledForTarget(BuildTargetGroup buildTargetGroup)
+        {
+            if (buildTargetGroup != BuildTargetGroup.Android)
+                return false;
+
+            XRGeneralSettings settings = XRGeneralSettingsPerBuildTarget.XRGeneralSettingsForBuildTarget(buildTargetGroup);
+            if (settings == null)
+                return false;
+
+            bool loaderFound = false;
+#if UNITY_2021_1_OR_NEWER
+            for (int i = 0; i < settings.Manager.activeLoaders.Count; ++i)
+            {
+                if (settings.Manager.activeLoaders[i] as PXR_Loader != null)
+                {
+                    loaderFound = true;
+                    break;
+                }
+            }
+#else
+            for (int i = 0; i < settings.Manager.loaders.Count; ++i)
+            {
+                if (settings.Manager.loaders[i] as PXR_Loader != null)
+                {
+                    loaderFound = true;
+                    break;
+                }
+            }
+#endif
+
+            return loaderFound;
+        }
+
+        private readonly string[] runtimePluginNames = new string[]
+        {
+            "achievenment.jar",
+            "Pico_PaymentSDK_Android_V1.0.34.aar",
+            "UnityPicoVR.aar",
+            "pvrSDK-release.aar"
+        };
+
+        private bool ShouldIncludeRuntimePluginsInBuild(string path, BuildTargetGroup platformGroup)
+        {
+            return HasLoaderEnabledForTarget(platformGroup);
+        }
+        
+        public override void OnPreprocessBuild(BuildReport report)
+        {
+            if (IsCurrentBuildTargetValid(report) && HasLoaderEnabledForTarget(report.summary.platformGroup))
+                base.OnPreprocessBuild(report);
+
+            var allPlugins = PluginImporter.GetAllImporters();
+            foreach (var plugin in allPlugins)
+            {
+                if (plugin.isNativePlugin)
+                {
+                    foreach (var pluginName in runtimePluginNames)
+                    {
+                        if (plugin.assetPath.Contains(pluginName))
+                        {
+                            plugin.SetIncludeInBuildDelegate((path) => { return ShouldIncludeRuntimePluginsInBuild(path, report.summary.platformGroup); });
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static class PXR_BuildTools
@@ -60,14 +133,14 @@ namespace Unity.XR.PXR.Editor
         public void OnPreprocessBuild(BuildReport report)
 
         {
-            if(!PXR_BuildTools.LoaderPresentInSettingsForBuildTarget(report.summary.platformGroup))
+            if (!PXR_BuildTools.LoaderPresentInSettingsForBuildTarget(report.summary.platformGroup))
                 return;
             if (report.summary.platformGroup == BuildTargetGroup.Android)
             {
                 GraphicsDeviceType firstGfxType = PlayerSettings.GetGraphicsAPIs(EditorUserBuildSettings.activeBuildTarget)[0];
                 if (firstGfxType != GraphicsDeviceType.OpenGLES3 && firstGfxType != GraphicsDeviceType.Vulkan && firstGfxType != GraphicsDeviceType.OpenGLES2)
                 {
-                    throw new BuildFailedException("OpenGLES2, OpenGLES3, and Vulkan are currently the only graphics APIs compatible with the PicoVR XR Plugin on mobile platforms.");
+                    throw new BuildFailedException("OpenGLES2, OpenGLES3, and Vulkan are currently the only graphics APIs compatible with the Pico XR Plugin on mobile platforms.");
                 }
                 if (PXR_BuildTools.GetSettings().stereoRenderingModeAndroid == PXR_Settings.StereoRenderingModeAndroid.Multiview && firstGfxType == GraphicsDeviceType.OpenGLES2)
                 {
@@ -138,17 +211,6 @@ namespace Unity.XR.PXR.Editor
             }
         }
 
-        void CreateNameValueElementInTag(XmlDocument doc, string parentPath, string tag, string name, string value)
-        {
-            XmlElement childElement = doc.CreateElement(tag);
-            childElement.SetAttribute(name, androidURI, value);
-            var xmlParentNode = doc.SelectSingleNode(parentPath);
-            if (xmlParentNode != null)
-            {
-                xmlParentNode.AppendChild(childElement);
-            }
-        }
-
         void CreateNameValueElementsInTag(XmlDocument doc, string parentPath, string tag,
             string firstName, string firstValue, string secondName = null, string secondValue = null, string thirdName=null, string thirdValue=null)
         {
@@ -197,7 +259,7 @@ namespace Unity.XR.PXR.Editor
             var nodePath = "/manifest/application";
 			UpdateOrCreateAttributeInTag(manifestDoc, "/manifest","application", "requestLegacyExternalStorage","true");
             UpdateOrCreateNameValueElementsInTag(manifestDoc, nodePath, "meta-data", "name", "pvr.app.type", "value", "vr");
-            UpdateOrCreateNameValueElementsInTag(manifestDoc, nodePath, "meta-data", "name", "pvr.sdk.version", "value", "XR Platform_1.2.4.7");
+            UpdateOrCreateNameValueElementsInTag(manifestDoc, nodePath, "meta-data", "name", "pvr.sdk.version", "value", "XR Platform_1.2.5.3");
             UpdateOrCreateNameValueElementsInTag(manifestDoc, nodePath, "meta-data", "name", "enable_cpt", "value", PXR_ProjectSetting.GetProjectConfig().useContentProtect ? "1" : "0");
             UpdateOrCreateNameValueElementsInTag(manifestDoc, nodePath, "meta-data", "name", "enable_entitlementcheck", "value", PXR_PlatformSetting.Instance.startTimeEntitlementCheck ? "1" : "0");
             CreateNameValueElementsInTag(manifestDoc, "/manifest", "uses-permission","name", "android.permission.WRITE_SETTINGS");
@@ -212,54 +274,4 @@ namespace Unity.XR.PXR.Editor
     }
 #endif
 
-    public static class PXR_BuildHelper
-    {
-        public static void AddBackgroundShaderToProject(string shaderName)
-        {
-            if (string.IsNullOrEmpty(shaderName))
-            {
-                Debug.LogWarning("Incompatible render pipeline in GraphicsSettings.currentRenderPipeline. Background "
-                                 + "rendering may not operate properly.");
-            }
-            else
-            {
-                Shader shader = FindShaderOrFailBuild(shaderName);
-                Object[] preloadedAssets = PlayerSettings.GetPreloadedAssets();
-                var shaderAssets = (from preloadedAsset in preloadedAssets
-                                    where shader.Equals(preloadedAsset)
-                                    select preloadedAsset);
-                if ((shaderAssets == null) || !shaderAssets.Any())
-                {
-                    List<Object> preloadedAssetsList = preloadedAssets.ToList();
-                    preloadedAssetsList.Add(shader);
-                    PlayerSettings.SetPreloadedAssets(preloadedAssetsList.ToArray());
-                }
-            }
-        }
-
-        public static void RemoveShaderFromProject(string shaderName)
-        {
-            if (!string.IsNullOrEmpty(shaderName))
-            {
-                Shader shader = FindShaderOrFailBuild(shaderName);
-
-                Object[] preloadedAssets = PlayerSettings.GetPreloadedAssets();
-
-                var nonShaderAssets = (from preloadedAsset in preloadedAssets
-                                       where !shader.Equals(preloadedAsset)
-                                       select preloadedAsset);
-                PlayerSettings.SetPreloadedAssets(nonShaderAssets.ToArray());
-            }
-        }
-
-        static Shader FindShaderOrFailBuild(string shaderName)
-        {
-            var shader = Shader.Find(shaderName);
-            if (shader == null)
-            {
-                throw new BuildFailedException($"Cannot find shader '{shaderName}'");
-            }
-            return shader;
-        }
-    }
 }

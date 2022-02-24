@@ -112,8 +112,6 @@ namespace Unity.XR.PXR
                 {
                     stereoRenderingMode = (ushort) settings.GetStereoRenderingMode(),
                     colorSpace = (ushort) ((QualitySettings.activeColorSpace == ColorSpace.Linear) ? 1 : 0),
-                    useDefaultRenderTexture = settings.useDefaultRenderTexture,
-                    eyeRenderTextureResolution = settings.eyeRenderTextureResolution,
                     systemDisplayFrequency = rate,
                 };
 

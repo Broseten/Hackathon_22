@@ -71,6 +71,8 @@ namespace Unity.XR.PXR
         public static event EntitlementCheckResult EntitlementCheckResultEvent;
         public Action<float> DisplayRefreshRateChanged;
 
+        [HideInInspector]
+        public bool useRecommendedAntiAliasingLevel = true;
         // Start is called before the first frame update
         void Awake()
         {
@@ -115,6 +117,12 @@ namespace Unity.XR.PXR
 #endif
             //version log
             Debug.Log("XR Platform----SDK Version:" + PXR_Plugin.System.UPxr_GetSDKVersion() + " Unity Script Version:" + PXR_Plugin.System.UPxr_GetUnitySDKVersion());
+            int recommendedAntiAliasingLevel = 0;
+            PXR_Plugin.System.UPxr_GetIntConfig((int)GlobalIntConfigs.AntiAliasingLevelRecommended, ref recommendedAntiAliasingLevel);
+            if (useRecommendedAntiAliasingLevel && QualitySettings.antiAliasing != recommendedAntiAliasingLevel)
+            {
+                QualitySettings.antiAliasing = recommendedAntiAliasingLevel;
+            }
         }
 
         void OnEnable()
@@ -205,28 +213,6 @@ namespace Unity.XR.PXR
 
         void Start()
         {
-#if !UNITY_EDITOR
-            var loader = XRGeneralSettings.Instance.Manager.activeLoader as PXR_Loader;
-            var w = 2048;
-            var h = 2048;
-            if (loader != null)
-            {
-                if (loader.GetSettings().useDefaultRenderTexture)
-                {
-                    int enumindex = (int)GlobalIntConfigs.EyeTextureResolution0;
-                    PXR_Plugin.System.UPxr_GetIntConfig(enumindex, ref w);
-                    enumindex = (int)GlobalIntConfigs.EyeTextureResolution1;
-                    PXR_Plugin.System.UPxr_GetIntConfig(enumindex, ref h);
-                }
-                else
-                {
-                    w = (int)loader.GetSettings().eyeRenderTextureResolution.x;
-                    h = (int)loader.GetSettings().eyeRenderTextureResolution.y;
-                }
-            }
-            PXR_Plugin.Boundary.UPxr_SetViewportSize(w, h);
-#endif
-
             PXR_Plugin.System.UPxr_StartHomeKeyReceiver(gameObject.name);
             int fps = 0;
             int rate = (int)GlobalIntConfigs.IsShowFps;

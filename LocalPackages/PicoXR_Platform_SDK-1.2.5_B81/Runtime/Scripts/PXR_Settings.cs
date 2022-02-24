@@ -42,13 +42,7 @@ namespace Unity.XR.PXR
 
         [SerializeField, Tooltip("Set the Stereo Rendering Method")]
         public StereoRenderingModeAndroid stereoRenderingModeAndroid;
-
-        [SerializeField, Tooltip("Set whether use the default render texture")]
-        public bool useDefaultRenderTexture = true;
-
-        [SerializeField, Tooltip("Set the Resolution of eyes")]
-        public Vector2 eyeRenderTextureResolution = new Vector2(2048, 2048);
-
+        
         [SerializeField, Tooltip("Set the system display refresh rates")]
         public SystemDisplayFrequency systemDisplayFrequency;
 

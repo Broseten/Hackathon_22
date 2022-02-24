@@ -36,18 +36,15 @@ namespace Unity.XR.PXR
         {
             timeLeft -= Time.unscaledDeltaTime;
             accum += Time.unscaledDeltaTime;
-            ++frames;
 
             if (timeLeft <= 0.0)
             {
-                float fps = frames / accum;
-
-                strFps = string.Format("FPS: {0:f0}", fps);
+                PXR_Plugin.System.UPxr_GetIntConfig((int)GlobalIntConfigs.RenderFPS, ref frames);
+                strFps = string.Format("FPS: {0:f0}", frames);
                 fpsText.text = strFps;
 
                 timeLeft += updateInterval;
                 accum = 0.0f;
-                frames = 0;
             }
         }
     }

@@ -81,6 +81,10 @@ namespace Unity.XR.PXR
         GetWaitFrameNum,
         GetResetFrameNum,
         EnableFFR,
+        RotControllerMode,
+        RenderFPS,
+        AntiAliasingLevelRecommended
+
     };
 
     public enum GlobalFloatConfigs
@@ -280,14 +284,12 @@ namespace Unity.XR.PXR
     {
         public ushort stereoRenderingMode;
         public ushort colorSpace;
-        public bool useDefaultRenderTexture;
-        public Vector2 eyeRenderTextureResolution;
         public float systemDisplayFrequency;
     }
 
     public static class PXR_Plugin
     {
-        private const string PxrSDKVersion = "1.2.4.7";
+        private const string PxrSDKVersion = "1.2.5.3";
 
         private static AndroidJavaClass sysClass, homeKeyClass, audioClass, batteryClass, controllerClass0, controllerClass1, controllerClass2, pxrClass0, pxrClass1, pxrClass2, unityPlayer;
         private static AndroidJavaObject activity;

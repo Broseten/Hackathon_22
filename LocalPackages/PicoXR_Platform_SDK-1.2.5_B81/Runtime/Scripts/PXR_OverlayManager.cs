@@ -19,6 +19,10 @@ namespace Unity.XR.PXR
             {
                 RenderPipelineManager.endCameraRendering += MyPostRender;
             }
+            else
+            {
+                Camera.onPostRender += OnPostRenderCallBack;
+            }
 #endif
         }
 
@@ -29,15 +33,21 @@ namespace Unity.XR.PXR
             {
                 RenderPipelineManager.endCameraRendering -= MyPostRender;
             }
+            else
+            {
+                Camera.onPostRender -= OnPostRenderCallBack;
+            }
 #endif
         }
 
         private void MyPostRender(ScriptableRenderContext arg1, Camera arg2)
         {
-            OnPostRender();
+            OnPostRenderCallBack(arg2);
         }
-        private void OnPostRender()
+        private void OnPostRenderCallBack(Camera cam)
         {
+            if (cam.stereoActiveEye == Camera.MonoOrStereoscopicEye.Right) return;
+
             // Composite Layers: if find Overlay then Open Composite Layers feature
             int boundaryState = PXR_Plugin.Boundary.UPxr_GetSeeThroughState();
             if (PXR_OverLay.Instances.Count > 0 && boundaryState != 2)

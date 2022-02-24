@@ -42,13 +42,13 @@ namespace Unity.XR.PXR.Editor
                 }
             }
             // Fps and Screen Fade
-            manager.showFPS = EditorGUILayout.Toggle("Show FPS", manager.showFPS);
+            //manager.showFPS = EditorGUILayout.Toggle("Show FPS", manager.showFPS);
 
-            manager.useDefaultFps = EditorGUILayout.Toggle("Use Default FPS", manager.useDefaultFps);
-            if (!manager.useDefaultFps)
-            {
-                manager.customFps = EditorGUILayout.IntField("    FPS", manager.customFps);
-            }
+            //manager.useDefaultFps = EditorGUILayout.Toggle("Use Default FPS", manager.useDefaultFps);
+            //if (!manager.useDefaultFps)
+            //{
+            //    manager.customFps = EditorGUILayout.IntField("    FPS", manager.customFps);
+            //}
 
             manager.screenFade = EditorGUILayout.Toggle("Open Screen Fade", manager.screenFade);
             if (Camera.main != null)
@@ -94,6 +94,7 @@ namespace Unity.XR.PXR.Editor
 
             // content protect
             projectConfig.useContentProtect = EditorGUILayout.Toggle("Use Content Protect", projectConfig.useContentProtect);
+            manager.useRecommendedAntiAliasingLevel = EditorGUILayout.Toggle("Use Recommended MSAA", manager.useRecommendedAntiAliasingLevel);
 
             if (GUI.changed)
             {
