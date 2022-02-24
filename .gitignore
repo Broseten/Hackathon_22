@@ -1,4 +1,11 @@
-Builds/
-Library/
-Logs/
-Temp/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ibrary/
+[Ll]ogs/
+[Oo]bj/
+[Tt]emp/
+[Uu]ser[Ss]ettings/
+
+.vsconfig
+*.csproj
+*.sln
