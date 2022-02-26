@@ -1,5 +1,10 @@
 # Corinth Hackathon 2022 - TTS VR Unity Project
 
+
+Stáhnout a naimportovat (Assets > Import Package > Custom Package) do
+projektu .unitypackage Azure Speech SDK. https://aka.ms/csspeech/unitypackage
+
+
 Tento repozitář aktuálně obsahuje základ projektu, který by Vám měl ušetřit práci s instalací SDK balíčků pro vývoj na VR brýlích a s jejich nastavením.
 Během Hackatonu bude tento projekt rozšiřován o základní assety, další nástroje a případné opravy chyb.
 

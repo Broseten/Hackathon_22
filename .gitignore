@@ -10,3 +10,5 @@
 .vsconfig
 *.csproj
 *.sln
+
+Assets/SpeechSDK
