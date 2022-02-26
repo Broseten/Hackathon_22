@@ -1,14 +1,14 @@
 # Corinth Hackathon 2022 - TTS VR Unity Project
 
 Tento repozitář aktuálně obsahuje základ projektu, který by Vám měl ušetřit práci s instalací SDK balíčků pro vývoj na VR brýlích a s jejich nastavením.
-Během Hackatonu bude tento projekt rozšiřován o základní assety, další nástroje a případné opravy chyb. V této chvíli jde jen o hrubou kostru.
+Během Hackatonu bude tento projekt rozšiřován o základní assety, další nástroje a případné opravy chyb.
 
 Pokud se chcete na Hackatonu věnovat virtuální realitě na Pico all-in-one VR brýlích (platforma Android), věnujte pozornost tomuto projektu již nyní.  
 Pokud se chcete zaměřit jen na Holobox (PC s Windows), můžete tenhle projekt zatím ignorovat.
 
 Použití tohoto projektu není povinné, pokud máte vlastní projekt pravděpodobně nebudete chtít přejít na náš, přesto bychom doporučovali tento stáhnout a zkusit přeložit.
 
-## Postup:
+## Postup zprovoznění projektu pro Pico VR:
 1. Ujistěte se, že máte nainstalované Unity3D verzi 2020.3.29f1 (poslední LTS), včetně podpory pro build na Android, Android SDK a OpenJDK.
 
 2. Projekt nejlépe naklonujte přes Váš oblíbený Git-klient, nebo alespoň stáhněte jako .zip.
@@ -32,3 +32,7 @@ Použití tohoto projektu není povinné, pokud máte vlastní projekt pravděpo
 8. Pokud se Vám přesto nepodaří udělat build, dejte vědět, pokusíme se Vám na úvod Hackatonu pomoci.
 
 9. Na začátku Hackatonu aplikaci nainstalujeme a spustíme na VR brýlích.
+
+## VR interakce
+Projekt obsahuje ukázku základních interakcí ve VR (uchopování předmětů, interakce s UI). Pokud by Vám tyto základní interakce nestačily, doporučujeme prozkoumat [tento repozitář](https://github.com/Unity-Technologies/XR-Interaction-Toolkit-Examples), který demonstruje další možnosti XR Interaction Toolkitu. Zájemcům pomůžeme s jeho zprovozněním na Pico VR brýlích nebo poskytneme hotový Unity projekt.
+

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Camera: {fileID: 2092897947046139118}
   m_OriginBaseGameObject: {fileID: 2092897946733077855}
   m_CameraFloorOffsetObject: {fileID: 2092897946739970310}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 2
   m_CameraYOffset: 1.1176
 --- !u!114 &2092897946733077853
 MonoBehaviour:
@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 2092897946964032197}
   - component: {fileID: 2092897946964032196}
   - component: {fileID: 2092897946964032199}
+  - component: {fileID: 8465073671739410034}
   m_Layer: 0
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -167,7 +168,7 @@ MonoBehaviour:
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
   m_ControllerNode: 5
-  m_SelectUsage: 3
+  m_SelectUsage: 2
   m_ActivateUsage: 2
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
@@ -490,6 +491,28 @@ MonoBehaviour:
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 0}
   m_StopLineAtFirstRaycastHit: 1
+--- !u!114 &8465073671739410034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092897946964032193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ba2bcdb414e3b47aca41fdc1a87e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: 1
+  customModel: 0
+  g2: {fileID: 1708342051940834, guid: 468b5fc8d646bca4f919d7c7d038e413, type: 3}
+  neo2L: {fileID: 1723325941153176, guid: 8521c241f6c51644383901b25401b10c, type: 3}
+  neo2R: {fileID: 1378001143042502, guid: 87b651d48f7ec814c9167a70903f8da0, type: 3}
+  neo3L: {fileID: 414784878285137478, guid: dd2567ced62e02c4a97612f40b625a0b, type: 3}
+  neo3R: {fileID: 8571202708993718213, guid: 9b61279cb5700174cbc01f98837687f4, type: 3}
+  mobileMaterial: {fileID: 2100000, guid: 3a979f1659f45574b90fdb38f5ffc1ae, type: 2}
+  standardMaterial: {fileID: 2100000, guid: 3a979f1659f45574b90fdb38f5ffc1ae, type: 2}
+  controllerSimulation: 3
 --- !u!1 &2092897947046139114
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +662,7 @@ GameObject:
   - component: {fileID: 2092897947569948501}
   - component: {fileID: 2092897947569948500}
   - component: {fileID: 2092897947569948503}
+  - component: {fileID: 4492654231899451193}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -682,7 +706,7 @@ MonoBehaviour:
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
   m_ControllerNode: 4
-  m_SelectUsage: 3
+  m_SelectUsage: 2
   m_ActivateUsage: 2
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
@@ -1005,3 +1029,25 @@ MonoBehaviour:
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 0}
   m_StopLineAtFirstRaycastHit: 1
+--- !u!114 &4492654231899451193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092897947569948497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ba2bcdb414e3b47aca41fdc1a87e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: 0
+  customModel: 0
+  g2: {fileID: 1708342051940834, guid: 468b5fc8d646bca4f919d7c7d038e413, type: 3}
+  neo2L: {fileID: 1723325941153176, guid: 8521c241f6c51644383901b25401b10c, type: 3}
+  neo2R: {fileID: 1378001143042502, guid: 87b651d48f7ec814c9167a70903f8da0, type: 3}
+  neo3L: {fileID: 414784878285137478, guid: dd2567ced62e02c4a97612f40b625a0b, type: 3}
+  neo3R: {fileID: 8571202708993718213, guid: 9b61279cb5700174cbc01f98837687f4, type: 3}
+  mobileMaterial: {fileID: 2100000, guid: 3a979f1659f45574b90fdb38f5ffc1ae, type: 2}
+  standardMaterial: {fileID: 2100000, guid: 3a979f1659f45574b90fdb38f5ffc1ae, type: 2}
+  controllerSimulation: 3
