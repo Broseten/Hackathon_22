@@ -99,12 +99,12 @@ namespace LLQ.Speech
 				Directory.CreateDirectory(Path.GetDirectoryName(outputPath));
 
 				string ssml = templateProvider.TextToSSML(cultureId, textContent);
-				byte[] audioOutput = await synth.Synthesize(ssml);
+				SynthOutput synthOutput = await synth.Synthesize(ssml);
 
-				if(audioOutput != null)
+				if(synthOutput != null)
 				{
 					Debug.Log("Write wav to: " + outputPath);
-					File.WriteAllBytes(outputPath, audioOutput);
+					File.WriteAllBytes(outputPath, synthOutput.AudioData);
 
 					// modify the import settings
 					AssetDatabase.ImportAsset(outputPath); // needed to get the importer

@@ -12,6 +12,6 @@ namespace LLQ.Speech
 		/// </summary>
 		/// <param name="ssmlInput">Synthesis input containing all necessary meta-information/tags in Speech Synthesis Markup Language (SSML) format.</param>
 		/// <returns>Generated sound data, that can be saved as a file and played back.</returns>
-		System.Threading.Tasks.Task<byte[]> Synthesize(string ssmlInput);
+		System.Threading.Tasks.Task<SynthOutput> Synthesize(string ssmlInput);
 	}
 }
