@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5908733124780399690}
   - component: {fileID: 2092897946733077853}
   - component: {fileID: 2092897946733077852}
+  - component: {fileID: 7303437914622263097}
   m_Layer: 0
   m_Name: XR Origin (Rig)
   m_TagString: Untagged
@@ -78,6 +79,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 2092897946733077853}
+--- !u!114 &7303437914622263097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092897946733077855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4f2c0214c9b494fa7eb5b8b2c02885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 0}
+  m_TurnAmount: 45
+  m_DebounceTime: 0.5
+  m_EnableTurnLeftRight: 1
+  m_EnableTurnAround: 1
+  m_TurnUsage: 0
+  m_Controllers:
+  - {fileID: 2092897947569948458}
+  - {fileID: 2092897946964032218}
+  m_DeadZone: 0.75
 --- !u!1 &2092897946739970310
 GameObject:
   m_ObjectHideFlags: 0
