@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace LLQ.Speech.Editor
+namespace LLQ.Speech
 {
 	/// <summary>
 	/// Common interface for various SSML-based TTS templates.

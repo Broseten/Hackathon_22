@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using UnityEngine;
 
-namespace LLQ.Speech.Editor
+namespace LLQ.Speech
 {
 	/// <summary>
 	/// Speech synthesis preset in the form of Speech Synthesis Markup Language (SSML) template.

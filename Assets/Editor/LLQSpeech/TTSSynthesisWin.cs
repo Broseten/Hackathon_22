@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace LLQ.Speech.Editor
+namespace LLQ.Speech
 {
 	/// <summary>
 	/// Editor window for in-editor speech audio assets generation.

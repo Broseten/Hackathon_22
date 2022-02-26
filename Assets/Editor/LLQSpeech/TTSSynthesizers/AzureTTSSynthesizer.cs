@@ -1,7 +1,7 @@
 using Microsoft.CognitiveServices.Speech;
 using UnityEngine;
 
-namespace LLQ.Speech.Editor
+namespace LLQ.Speech
 {
 	/// <summary>
 	/// Text-to-speech synthesizer using MS Azure Cognitive Services.
