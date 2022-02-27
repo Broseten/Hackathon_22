@@ -6,6 +6,7 @@
 [Tt]emp/
 [Uu]ser[Ss]ettings/
 
+.idea/
 .vs/
 .vsconfig
 *.csproj
