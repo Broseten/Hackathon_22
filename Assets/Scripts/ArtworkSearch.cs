@@ -25,7 +25,10 @@ public class ArtworkSearch : MonoBehaviour
     {
         WWWForm form = new WWWForm();
 
-        using (UnityWebRequest www = UnityWebRequest.Get(url + "?query="+ search))
+        string query = url + "?query=" + search;
+        Debug.Log(query);
+
+        using (UnityWebRequest www = UnityWebRequest.Get(query))
         {
             yield return www.SendWebRequest();
 
