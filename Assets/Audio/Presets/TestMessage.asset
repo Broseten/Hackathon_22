@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d4eb2198881004fb39253de794e6c1, type: 3}
+  m_Name: TestMessage
+  m_EditorClassIdentifier: 
+  sourceString: "Na sv\u011Bt\u011B je 9 milion\u016F terorist\u016F a j\xE1 zabiju
+    zrovna toho, kterej m\xE1 men\u0161\xED nohu ne\u017E moje sestra."
+  Audio: {fileID: 8300000, guid: 9612b5c7e334b304ab4f76d14eeccae8, type: 3}
+  Visemes:
+  - Time: 0.05
+    VisemeId: 0
+  - Time: 0.05
+    VisemeId: 19
+  - Time: 0.1125
+    VisemeId: 2
+  - Time: 0.534375
+    VisemeId: 15
+  - Time: 0.64375
+    VisemeId: 18
+  - Time: 0.70625
+    VisemeId: 6
+  - Time: 0.70625
+    VisemeId: 4
+  - Time: 0.76875
+    VisemeId: 16
+  - Time: 0.8625
+    VisemeId: 4
+  - Time: 0.95625
+    VisemeId: 6
+  - Time: 1.05
+    VisemeId: 4
+  - Time: 1.065625
+    VisemeId: 19
+  - Time: 1.14375
+    VisemeId: 4
+  - Time: 1.20625
+    VisemeId: 18
+  - Time: 1.253125
+    VisemeId: 6
+  - Time: 1.284375
+    VisemeId: 4
+  - Time: 1.33125
+    VisemeId: 19
+  - Time: 1.425
+    VisemeId: 21
+  - Time: 1.534375
+    VisemeId: 6
+  - Time: 1.565625
+    VisemeId: 14
+  - Time: 1.64375
+    VisemeId: 6
+  - Time: 1.659375
+    VisemeId: 6
+  - Time: 1.7375
+    VisemeId: 8
+  - Time: 1.8
+    VisemeId: 19
+  - Time: 1.846875
+    VisemeId: 7
+  - Time: 1.940625
+    VisemeId: 19
+  - Time: 2.003125
+    VisemeId: 4
+  - Time: 2.065625
+    VisemeId: 13
+  - Time: 2.128125
+    VisemeId: 8
+  - Time: 2.190625
+    VisemeId: 13
+  - Time: 2.2375
+    VisemeId: 6
+  - Time: 2.3
+    VisemeId: 15
+  - Time: 2.39375
+    VisemeId: 19
+  - Time: 2.45625
+    VisemeId: 7
+  - Time: 2.6125
+    VisemeId: 2
+  - Time: 2.753125
+    VisemeId: 6
+  - Time: 2.8625
+    VisemeId: 2
+  - Time: 2.940625
+    VisemeId: 15
+  - Time: 3.05
+    VisemeId: 2
+  - Time: 3.096875
+    VisemeId: 21
+  - Time: 3.175
+    VisemeId: 6
+  - Time: 3.221875
+    VisemeId: 6
+  - Time: 3.253125
+    VisemeId: 7
+  - Time: 3.346875
+    VisemeId: 15
+  - Time: 3.4406247
+    VisemeId: 13
+  - Time: 3.4875
+    VisemeId: 8
+  - Time: 3.5656247
+    VisemeId: 18
+  - Time: 3.5968752
+    VisemeId: 19
+  - Time: 3.6593752
+    VisemeId: 2
+  - Time: 3.7218752
+    VisemeId: 19
+  - Time: 3.8156247
+    VisemeId: 8
+  - Time: 3.89375
+    VisemeId: 12
+  - Time: 3.9406247
+    VisemeId: 8
+  - Time: 4.05
+    VisemeId: 0
+  - Time: 4.14375
+    VisemeId: 20
+  - Time: 4.39375
+    VisemeId: 19
+  - Time: 4.409375
+    VisemeId: 4
+  - Time: 4.471875
+    VisemeId: 13
+  - Time: 4.534375
+    VisemeId: 4
+  - Time: 4.58125
+    VisemeId: 6
+  - Time: 4.6281247
+    VisemeId: 21
+  - Time: 4.70625
+    VisemeId: 2
+  - Time: 4.8
+    VisemeId: 21
+  - Time: 4.9406247
+    VisemeId: 4
+  - Time: 5.01875
+    VisemeId: 19
+  - Time: 5.0656247
+    VisemeId: 16
+  - Time: 5.14375
+    VisemeId: 6
+  - Time: 5.2375
+    VisemeId: 19
+  - Time: 5.346875
+    VisemeId: 8
+  - Time: 5.409375
+    VisemeId: 12
+  - Time: 5.471875
+    VisemeId: 7
+  - Time: 5.51875
+    VisemeId: 19
+  - Time: 5.6125
+    VisemeId: 4
+  - Time: 5.675
+    VisemeId: 16
+  - Time: 5.721875
+    VisemeId: 21
+  - Time: 5.846875
+    VisemeId: 8
+  - Time: 5.95625
+    VisemeId: 6
+  - Time: 6.0031247
+    VisemeId: 4
+  - Time: 6.034375
+    VisemeId: 15
+  - Time: 6.1125
+    VisemeId: 4
+  - Time: 6.2375
+    VisemeId: 15
+  - Time: 6.2531247
+    VisemeId: 19
+  - Time: 6.346875
+    VisemeId: 13
+  - Time: 6.425
+    VisemeId: 2
+  - Time: 6.4875
+    VisemeId: 0

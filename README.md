@@ -8,10 +8,7 @@ projektu .unitypackage Azure Speech SDK. https://aka.ms/csspeech/unitypackage
 Tento repozitář aktuálně obsahuje základ projektu, který by Vám měl ušetřit práci s instalací SDK balíčků pro vývoj na VR brýlích a s jejich nastavením.
 Během Hackatonu bude tento projekt rozšiřován o základní assety, další nástroje a případné opravy chyb.
 
-Pokud se chcete na Hackatonu věnovat virtuální realitě na Pico all-in-one VR brýlích (platforma Android), věnujte pozornost tomuto projektu již nyní.  
-Pokud se chcete zaměřit jen na Holobox (PC s Windows), můžete tenhle projekt zatím ignorovat.
-
-Použití tohoto projektu není povinné, pokud máte vlastní projekt pravděpodobně nebudete chtít přejít na náš, přesto bychom doporučovali tento stáhnout a zkusit přeložit.
+Projekt obsahuje Azure Speech SDK pro Unity. Stažením berete na vědomí [Licenční podmínky Speech SDK](https://aka.ms/csspeech/license201809) a [Oznámení o softwaru třetích stran](https://aka.ms/csspeech/carbontpn).
 
 ## Postup zprovoznění projektu pro Pico VR:
 1. Ujistěte se, že máte nainstalované Unity3D verzi 2020.3.29f1 (poslední LTS), včetně podpory pro build na Android, Android SDK a OpenJDK.
