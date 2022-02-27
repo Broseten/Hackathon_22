@@ -30,7 +30,6 @@ public class CloseCall : MonoBehaviour
     private void LeaveTrail(Vector3 point, float scale, Material material) 
     {
     GameObject sphere=GameObject.CreatePrimitive(PrimitiveType.Sphere);
-    
     sphere.transform.localScale = Vector3.one * scale;
     sphere.transform.parent = transform.parent;
     sphere.transform.position = point;

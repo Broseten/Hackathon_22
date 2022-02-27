@@ -15,6 +15,8 @@ namespace LLQ.Speech
 		private float LipSyncTime;
 		private SpeechMetadataAudio LipSyncMetadata;
 
+		public Vector4 LookWeights;
+		public Camera Camera;
 
 		void OnEnable()
 		{
@@ -101,6 +103,37 @@ namespace LLQ.Speech
 			Animator.SetFloat("lip_b", fb);
 			Animator.SetLayerWeight(1, 1 - ft);
 			Animator.SetLayerWeight(2, ft);
+		}
+		private void OnAnimatorIK()
+		{
+			
+			//if(LookTarget != null)
+			{
+			var target = Camera.transform.position;
+			/*var da = (transform.position - target).Magnitude2D();
+
+			if(da < LookDistance)
+			Weight += Time.deltaTime * 2;
+			else
+			Weight -= Time.deltaTime;
+
+			Weight = Mathf.Clamp01(Weight);
+
+			if(Weight > .9f)
+		
+			var bpos = LLQStory.Managers.CameraRigManager.Instance.Controllers.rightBaseController.transform.position;
+			var db = (transform.position - bpos).Magnitude2D();
+			if(db < da * HandRatio)
+			target = bpos;
+			}*/
+
+			//var tpos = LLQStory.Managers.CameraRigManager.Instance.Controllers.rightBaseController.transform.position;
+			Animator.SetLookAtWeight(1, LookWeights.x, LookWeights.y, LookWeights.z, LookWeights.w);
+			Animator.SetLookAtPosition(target);
+			//Animator.SetLookAtPosition(LLQStory.Managers.CameraRigManager.Instance.Body.GetHead().transform.position);
+			//LLQStory.Managers.CameraRigManager.Instance.Body.GetHead().transform.position;
+			}
+			
 		}
 	}
 }
