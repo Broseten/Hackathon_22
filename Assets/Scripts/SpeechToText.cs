@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 using UnityEngine;
-using UnityEngine.UI
+using UnityEngine.UI;
 
 
 public class SpeechToText : MonoBehaviour
@@ -14,7 +14,9 @@ public class SpeechToText : MonoBehaviour
     static string YourSubscriptionKey = "9d934d02d3e24398bd3d8eb5e5fdf686";
     static string YourServiceRegion = "germanywestcentral";
 
-    //HttpClient client = Http
+    public object[] artWorks;
+
+    HttpClient client = new HttpClient();
     SpeechRecognizer speechRecognizer;
     SpeechConfig speechConfig;
 
@@ -40,6 +42,8 @@ public class SpeechToText : MonoBehaviour
             case ResultReason.RecognizedSpeech:
                 Debug.Log($"RECOGNIZED: Text={speechRecognitionResult.Text}");
                 usersInput.text = message = speechRecognitionResult.Text;
+                //artWorks = client.Query(message);
+                Debug.Log(artWorks);
                 break;
             case ResultReason.NoMatch:
                 Debug.Log($"NOMATCH: Speech could not be recognized.");
