@@ -1,30 +1,23 @@
 using System;
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
+[Serializable]
+public class UnityEventString : UnityEvent<string> { }
 
 public class SpeechToText : MonoBehaviour
-{ 
-    public Text usersInput;
-
+{
     static string YourSubscriptionKey = "9d934d02d3e24398bd3d8eb5e5fdf686";
     static string YourServiceRegion = "germanywestcentral";
 
-    public object[] artWorks;
-
-    HttpClient client = new HttpClient();
     SpeechRecognizer speechRecognizer;
     SpeechConfig speechConfig;
-
-    private object threadLocker = new object();
-    private bool speechStarted = false; //checking to see if you have started listening for speech
-    public string message;
-
-    private bool micPermissionGranted = false;
+    
+    public UnityEventString OnSpeechRecognized = new UnityEventString();
+    public UnityEvent OnSpeechNoMatch = new UnityEvent();
+    public UnityEvent OnSpeechCanceled = new UnityEvent();
 
     public async void Record()
     {
@@ -41,12 +34,11 @@ public class SpeechToText : MonoBehaviour
         {
             case ResultReason.RecognizedSpeech:
                 Debug.Log($"RECOGNIZED: Text={speechRecognitionResult.Text}");
-                usersInput.text = message = speechRecognitionResult.Text;
-                //artWorks = client.Query(message);
-                Debug.Log(artWorks);
+                OnSpeechRecognized.Invoke(speechRecognitionResult.Text);
                 break;
             case ResultReason.NoMatch:
                 Debug.Log($"NOMATCH: Speech could not be recognized.");
+                OnSpeechNoMatch.Invoke();
                 break;
             case ResultReason.Canceled:
                 var cancellation = CancellationDetails.FromResult(speechRecognitionResult);
@@ -58,11 +50,14 @@ public class SpeechToText : MonoBehaviour
                     Debug.Log($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
                     Debug.Log($"CANCELED: Double check the speech resource key and region.");
                 }
+                OnSpeechCanceled.Invoke();
+                break;
+            default:
                 break;
         }
     }
 
-    async void Start()
+    void Start()
     {
         
         try
